@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: myplans-audit-service
+  profiles:
+    active: dev
+
+server:
+  port: ${SERVER_PORT:8082}
+
+jwt:
+  secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
+
+audit:
+  internal:
+    token: ${AUDIT_INTERNAL_TOKEN:dev-internal-token-please-change-in-prod}
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: method
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
