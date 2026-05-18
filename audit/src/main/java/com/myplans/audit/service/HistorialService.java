@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.data.domain.Sort;
+
 @Service
 @RequiredArgsConstructor
 public class HistorialService {
@@ -42,6 +44,13 @@ public class HistorialService {
     @Transactional(readOnly = true)
     public long countByTag(Integer idTag) {
         return historialRepository.countByIdTag(idTag);
+    }
+
+    @Transactional(readOnly = true)
+    public List<HistorialResponseDTO> findAll() {
+        return historialRepository.findAll(Sort.by(Sort.Direction.DESC, "fechaActualizado")).stream()
+                .map(this::toResponse)
+                .toList();
     }
 
     private HistorialResponseDTO toResponse(Historial h) {

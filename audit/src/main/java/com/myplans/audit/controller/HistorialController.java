@@ -39,15 +39,22 @@ public class HistorialController {
         return ResponseEntity.status(HttpStatus.CREATED).body(created);
     }
 
+    @Operation(summary = "Todos los eventos de auditoría", description = "Devuelve todos los registros ordenados del más reciente al más antiguo.")
+    @PreAuthorize("hasAnyRole('AUDITOR', 'ADMIN')")
+    @GetMapping
+    public ResponseEntity<List<HistorialResponseDTO>> getAll() {
+        return ResponseEntity.ok(historialService.findAll());
+    }
+
     @Operation(summary = "Historial de cambios de un TAG", description = "Devuelve todos los registros del TAG ordenados del más reciente al más antiguo.")
-    @PreAuthorize("hasAnyRole('SUPERVISOR', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('AUDITOR', 'ADMIN')")
     @GetMapping("/tag/{idTag}")
     public ResponseEntity<List<HistorialResponseDTO>> getByTag(@PathVariable Integer idTag) {
         return ResponseEntity.ok(historialService.findByTag(idTag));
     }
 
     @Operation(summary = "Conteo de eventos de un TAG")
-    @PreAuthorize("hasAnyRole('SUPERVISOR', 'ADMIN')")
+    @PreAuthorize("hasAnyRole('AUDITOR', 'ADMIN')")
     @GetMapping("/tag/{idTag}/count")
     public ResponseEntity<Map<String, Object>> countByTag(@PathVariable Integer idTag) {
         long total = historialService.countByTag(idTag);
