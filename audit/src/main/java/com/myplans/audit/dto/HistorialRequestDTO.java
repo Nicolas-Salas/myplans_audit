@@ -19,6 +19,8 @@ public record HistorialRequestDTO(
         @Size(max = 50, message = "estadoNuevo debe tener máximo 50 caracteres")
         String estadoNuevo,
 
-        String observaciones
+        String observaciones,
+
+        Boolean porIa
 ) {
 }
