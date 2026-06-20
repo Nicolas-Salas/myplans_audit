@@ -54,4 +54,7 @@ public class Historial {
     @NotNull
     @Column(name = "fecha_actualizado", nullable = false, updatable = false)
     private LocalDateTime fechaActualizado;
+
+    @Column(name = "por_ia", nullable = false)
+    private Boolean porIa = false;
 }

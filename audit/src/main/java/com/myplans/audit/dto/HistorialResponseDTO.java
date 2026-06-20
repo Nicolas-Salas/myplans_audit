@@ -9,6 +9,7 @@ public record HistorialResponseDTO(
         String estadoAnterior,
         String estadoNuevo,
         String observaciones,
-        LocalDateTime fechaActualizado
+        LocalDateTime fechaActualizado,
+        Boolean porIa
 ) {
 }

@@ -28,6 +28,7 @@ public class HistorialService {
                 .estadoNuevo(request.estadoNuevo())
                 .observaciones(request.observaciones())
                 .fechaActualizado(LocalDateTime.now())
+                .porIa(Boolean.TRUE.equals(request.porIa()))
                 .build();
 
         historial = historialRepository.save(historial);
@@ -61,6 +62,7 @@ public class HistorialService {
                 h.getEstadoAnterior(),
                 h.getEstadoNuevo(),
                 h.getObservaciones(),
-                h.getFechaActualizado());
+                h.getFechaActualizado(),
+                h.getPorIa());
     }
 }
